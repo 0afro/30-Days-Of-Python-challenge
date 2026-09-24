@@ -29,3 +29,12 @@ greet(**my_dict)
 # The ** operator unpacks the dictionary, passing its key-value pairs 
 # as keyword arguments to the function.
 # Output: Hi there Alice how is the weather in New York
+
+def arbitrary_named_args(**args):
+    print("I received an arbitrary number of arguments, totaling", len(args))
+    print("They are provided as a dictionary in my function:", type(args))
+    print("Let's print them:")
+    for k, v in args.items():
+        print(" * key:", k, "value:", v)
+
+arbitrary_named_args(name="Bob", pet="Fluffy, the bunny")

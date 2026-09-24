@@ -145,3 +145,96 @@ def sum_of_even(numb):
 print(sum_of_even(10))
 
 # Exercises: Level 2
+#1 Declare a function named evens_and_odds . It takes a positive integer as parameter and it counts number of evens and odds in the number.
+#     print(evens_and_odds(100))
+#     # The number of odds are 50.
+#     # The number of evens are 51.
+def evens_and_odds(num):
+    if not isinstance(num, int) or num < 0:
+        return "Please enter a positive integer."
+
+    even = 0
+    odd = 0
+
+    for i in range(0,num+1):
+        if i % 2 == 1:
+            odd += 1
+        else:
+            even +=1
+    return f'The number of evens are {even}.\nThe number of odds are {odd}.'
+
+print(evens_and_odds(500))
+
+#2 Call your function factorial, it takes a whole number as a parameter and it return a factorial of the number
+def factorial(num):
+    if not isinstance(num, int):
+        return "Please enter a whole number."
+    result = 1
+    for i in range(1, num + 1):
+        result *= i
+    return result
+
+print(factorial(4))
+
+#3 Call your function is_empty, it takes a parameter and it checks if it is empty or not
+def is_empty(check):
+    if len(check)== 0:
+        return True
+    else:
+        return False
+
+print(is_empty(''))
+        
+#4 Write different functions which take lists. They should calculate_mean, calculate_median, calculate_mode, calculate_range, calculate_variance, calculate_std (standard deviation).
+def calculate_stats(data):
+    mean = sum(data) / len(data)
+    data_range = max(data) - min(data)
+    mode = max(data, key=data.count)
+    variance = sum((x - mean) ** 2 for x in data) / len(data)
+    std = variance ** 0.5
+    sorted_data = sorted(data)
+    n = len(sorted_data)
+    mid = n // 2
+
+    if n % 2 != 0: 
+        median = sorted_data[mid]
+    else:
+        median = (sorted_data[mid - 1] + sorted_data[mid]) / 2
+    return{
+        'Mean' : mean,
+        'Range': data_range,
+        'Mode' : mode,
+        'Median' : median,
+        'Variance' : variance,
+        'Standard deviation' : std
+    }
+
+print(calculate_stats([2, 4, 4, 4, 5, 5, 7, 9]))
+
+#5 Write a function called greet which takes a default argument, name. If no argument is supplied it should print "Hello, Guest!", otherwise it should greet the person by name.
+#     greet()
+#     # "Hello, Guest!
+#     greet("Alice")
+#     # "Hello, Alice!"
+def greet(default = 'Guest'):
+    welc_message = 'Hello, '+ default + '!'
+    return welc_message
+
+print(greet('Bob'))
+print(greet())
+
+#6 Create a function called show_args to take an arbitrary number of named arguments and print their names and values.
+# show_args(name="Alice", age=30, city="New York")
+# # Received: name: Alice, age: 30, city: New York
+# show_args(name="Bob", pet="Fluffy, the bunny")
+# # Received: name: Bob, pet: Fluffy, the bunny
+def show_args(**args):
+    pairs = []
+    for key, value in args.items():
+        pairs.append(f"{key}: {value}")
+
+    formatted = ", ".join(pairs)
+    print(f"Received: {formatted}")
+
+show_args(name="Alice", age=30, city="New York")
+show_args(name="Bob", pet="Fluffy, the bunny")
