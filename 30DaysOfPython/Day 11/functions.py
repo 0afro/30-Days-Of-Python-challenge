@@ -1,4 +1,5 @@
 # Exercises: Level 1
+import keyword
 #1 Declare a function add_two_numbers. It takes two parameters and it returns a sum.
 def add_two_numbers(a,b):
     total = a + b
@@ -238,3 +239,84 @@ def show_args(**args):
 
 show_args(name="Alice", age=30, city="New York")
 show_args(name="Bob", pet="Fluffy, the bunny")
+
+# Exercises: Level 3
+#1 Write a function called is_prime, which checks if a number is prime.
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+print(is_prime(11))
+print(is_prime(1))
+print(is_prime(954))
+
+#2 Write a functions which checks if all items are unique in the list.
+def is_unique(lst):
+    unique_items = set()
+    for item in lst:
+        if item in unique_items:
+            return False
+        unique_items.add(item)
+    return True
+
+print(is_unique(["Goku", "Shockwave", "Gohan", "Piccolo", "Brawl", "Mindwipe"]))
+print(is_unique(["Goku", "Shockwave", "Gohan", "Piccolo", "Piccolo", "Mindwipe"]))
+
+#3 Write a function which checks if all the items of the list are of the same data type.
+def isSame_dataType(data):
+    if not data:
+        return True
+    first_type = type(data[0])
+    for item in data:
+        if type(item) != first_type:
+            return False
+    return True
+
+print(isSame_dataType([1, 2, 3]))
+print(isSame_dataType([1, 'special beam cannon', 3]))
+
+#4 Write a function which check if provided variable is a valid python variable
+def isValid_pythonVariable(var_name):
+    if var_name.isidentifier() and not keyword.iskeyword(var_name):
+        return True
+    else:
+        return False
+
+print(isValid_pythonVariable("for"))
+print(isValid_pythonVariable("user_name"))
+
+#5 Go to the data folder and access the countries-data.py file.
+#5a Create a function called the most_spoken_languages in the world. It should return 10 or 20 most spoken languages in the world in descending order
+from countries_data import countries_data 
+def most_spoken_languages(countries_data,limit=10):
+    lang_count={}
+    for country in countries_data:
+        for lang in country['languages']:
+            if lang in lang_count:
+                lang_count[lang] +=1
+            else:
+                lang_count[lang] =1
+    counts_list = [(count, lang) for lang, count in lang_count.items()]
+    sorted_counts = sorted(counts_list, reverse=True)
+
+    return sorted_counts[:limit]
+
+print(most_spoken_languages(countries_data))
+print(most_spoken_languages(countries_data, 20))
+
+#5b Create a function called the most_populated_countries. It should return 10 or 20 most populated countries in descending order.
+def most_populated_countries(countries_data,limit=10):
+    pop_list = []
+    for country in countries_data:
+        pop_list.append((country['population'], country['name']))
+    sorted_pop = sorted(pop_list, reverse=True)
+
+    return sorted_pop[:limit]
+
+print(most_populated_countries(countries_data))
+print(most_populated_countries(countries_data, 20))
+
