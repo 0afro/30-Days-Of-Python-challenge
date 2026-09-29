@@ -89,11 +89,20 @@ print(generate_colors('hex',6))
 
 # Exercises: Level 3
 #1 Call your function shuffle_list, it takes a list as a parameter and it returns a shuffled list
+def shuffle_list(lst):
+    shuffle = random.sample(lst, len(lst))
+    return shuffle
 
-
-
+print(shuffle_list(["Goku", "Shockwave", "Gohan", "Piccolo", "Brawl", "Mindwipe"]))
 
 #2 Write a function which returns an array of seven random numbers in a range of 0-9. All the numbers must be unique.
-
+def seven_ran_nums():
+    lst =[]
+    while len(lst) < 7:
+        num = random.randint(0,9)
+        if num not in lst:
+            lst.append(num)
+    return lst
+print(seven_ran_nums())
 
 
