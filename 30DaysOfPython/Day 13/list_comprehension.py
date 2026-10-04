@@ -13,8 +13,6 @@ list_of_lists =[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 flattened_list = [number for sublist in list_of_lists for number in sublist]
 print(flattened_list)
 
-
-
 #3 Using list comprehension create the following list of tuples:
 # [(0, 1, 0, 0, 0, 0, 0),
 # (1, 1, 1, 1, 1, 1, 1),
@@ -28,30 +26,54 @@ print(flattened_list)
 # (9, 1, 9, 81, 729, 6561, 59049),
 # (10, 1, 10, 100, 1000, 10000, 100000)]
 
-
+tuple_compressed = [(i, i**0, i**1, i**2, i**3, i**4, i**5) for i in range(11)]
+for t in tuple_compressed:
+    print(t)
 
 #4 Flatten the following list to a new list:
 # countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
 # output:
 # [['FINLAND','FIN', 'HELSINKI'], ['SWEDEN', 'SWE', 'STOCKHOLM'], ['NORWAY', 'NOR', 'OSLO']]
+countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
+flattened_list2= [
+    [country.upper(), country[:3].upper(), capital.upper()]
+    for sublist in countries
+    for country, capital in sublist
+]
 
+print(flattened_list2)
 
 
 #5 Change the following list to a list of dictionaries:
-
 # countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
 # output:
 # [{'country': 'FINLAND', 'city': 'HELSINKI'},
 # {'country': 'SWEDEN', 'city': 'STOCKHOLM'},
 # {'country': 'NORWAY', 'city': 'OSLO'}]
-
+countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
+new_dict= [
+    {'country': country.upper(), 'city': city.upper()}
+    for sublist in countries
+    for country, city in sublist
+]
+print(new_dict)
 
 
 #6 Change the following list of lists to a list of concatenated strings:
 # names = [[('Asabeneh', 'Yetayeh')], [('David', 'Smith')], [('Donald', 'Trump')], [('Bill', 'Gates')]]
 # output
 # ['Asabeneh Yetaeyeh', 'David Smith', 'Donald Trump', 'Bill Gates']
-
+names = [[('Asabeneh', 'Yetayeh')], [('Mark', 'Evans')], [('Jude', 'Sharpe')], [('Axel', 'Blaze')]]
+conc_string = [
+    f"{first_name} {last_name}"
+    for sublist in names
+    for first_name, last_name in sublist
+]
+print(conc_string)
 
 
 #7 Write a lambda function which can solve a slope or y-intercept of linear functions.
+calculate_slope = lambda x1, y1, x2, y2: (y2 - y1) / (x2 - x1)
+calculate_y_intercept = lambda x, y, m: y - (m * x)
+print(calculate_slope(2, 3, 6, 11))
+print(calculate_y_intercept( 2, 3, calculate_slope(2, 3, 6, 11)))
