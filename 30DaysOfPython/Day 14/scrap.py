@@ -6,9 +6,9 @@ print(double_it(10))
 def is_long_word(word):
     default = 5
     if len(word) > default:
-        print(True)
+        return(True)
     else:
-        print(False)
+        return(False)
     
 is_long_word('Sonic')
 is_long_word('Piccolo')
@@ -16,6 +16,5 @@ is_long_word('Piccolo')
 def multiply_two(x, y):
     product = x*y
     return product
-
 print(multiply_two(9, 5))
         
